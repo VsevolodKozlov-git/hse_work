@@ -30,5 +30,5 @@ def main(sales):
 
     return revenue
 
-# uncomment line below
+# u ncomment line below
 # revenue = main(sales)
