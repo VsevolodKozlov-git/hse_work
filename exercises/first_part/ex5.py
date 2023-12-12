@@ -95,8 +95,6 @@ def report_refiner(report, *arg_filters, **direction_type):
     market filters:
         - min. proftability(int) (profitability = profit/income)
         - region
-
-
     interview:
         - name
         - age
@@ -111,8 +109,6 @@ def report_refiner(report, *arg_filters, **direction_type):
          - TIN
     return dicts in the same order;
     return empty list if no suitable information
-    Question: we have only one report. Why should we return list of dicts?
-
     """
     market_flag = direction_type.get('market', None)
     interview_flag = direction_type.get('interview', None)
