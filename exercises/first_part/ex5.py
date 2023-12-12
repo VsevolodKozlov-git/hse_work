@@ -137,7 +137,6 @@ def refine_interview(report, *arg_filters):
     genders = re.findall(gender_pattern, report)
     phone_pattern = r"\(\d{3}\) \d{3}-\d{4}"
     phone_numbers = re.findall(phone_pattern, report)
-    # todo how phone number constructed
     phone_numbers = [
         '+7-' + re.sub(r"\D", "", phone_number)[:3] + '-' + re.sub(r"\D", "", phone_number)[3:6] + '-' + re.sub(
             r"\D", "", phone_number)[6:8] + '-' + re.sub(r"\D", "", phone_number)[8:] for phone_number in

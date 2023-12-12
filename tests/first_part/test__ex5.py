@@ -77,7 +77,7 @@ class Tests(unittest.TestCase):
 
         report = "In our assessment of various Russian companies, we have identified several that stand out in terms of their financial performance and adherence to government standards. One such impressive company is Petrovich Electronics Ltd., with a website URL at www.petrovichelectronics.ru. It reported a last year income of $25,000,000 and a profit of $5,000,000. Petrovich Electronics Ltd. has a TIN number of 7701234567. Siberian Steelworks Inc., accessible at www.siberiansteelworks.ru, generated a last year income of $60,000,000 and a profit of $10,000,000. The TIN number for Siberian Steelworks Inc. is 7709876543. MosTech Solutions LLC, whose website URL is www.mostechsolutions.ru, is another notable company. With a last year income of $40,000,000 and a profit of $8,000,000, MosTech Solutions LLC demonstrates strong financial performance. It has a TIN number of 3306543210. Volga Pharmaceuticals Ltd., found at www.volga-pharma.ru, recorded a last year income of $35,000,000 and a profit of $7,000,000. Volga Pharmaceuticals Ltd. also has a TIN number of 3404567890. Arctic Renewable Energy Corp., accessible via www.arcticrenewable.ru, is another standout company. It reported a last year income of $75,000,000 and a profit of $12,000,000. Arctic Renewable Energy Corp. has a TIN number of 8907890123."
         expected_result = [
-            {'company name': 'Petrovich Electronics Ltd.', 'url': 'www.petrovichelectronics.ru', 'TIN': 7701234567,
+            {'company name': 'Petrovich Electronics Ltd.', 'url': 'www.petrovichelectronics.ru.', 'TIN': 7701234567,
              'income': 25000000, 'profit': 5000000}]
 
         actual_result = ex5.report_refiner(report, 0.2, 'Moscow', market=True)
@@ -97,10 +97,6 @@ class Tests(unittest.TestCase):
              'TIN': 7707890123, 'income': 95000000, 'profit': 18000000}]
         actual_result = ex5.report_refiner(report, market=True)
         self.assertEqual(actual_result, expected_result)
-
-
-
-
 
 
 if __name__ == '__main__':

@@ -12,6 +12,18 @@ def main(grades, excuses, plan):
     excuses['end_date'] = pd.to_datetime(excuses['end_date'])
     excuses.drop('date', axis=1, inplace=True)
 
+    cnt_grades = count_grades(grades, excuses, plan)
+    return get_result(cnt_grades)
+
+
+def prepare_excuses(excuses):
+    excuses[['start_date', 'end_date']] = excuses['date'].str.split(expand=True)
+    excuses['start_date'] = pd.to_datetime(excuses['start_date'])
+    excuses['end_date'] = pd.to_datetime(excuses['end_date'])
+    excuses.drop('date', axis=1, inplace=True)
+    return excuses
+
+def count_grades(grades, excuses, plan):
     cnt_grades = {}
     names = grades.columns
     for name in names:
@@ -30,16 +42,7 @@ def main(grades, excuses, plan):
             else:
                 cnt_grades[name][activity]['cnt'] += 1
                 cnt_grades[name][activity]['sum'] += value
-
-    result = {}
-    for name in names:
-        avg_seminars = (cnt_grades[name]['Seminar']['sum'] /
-                        cnt_grades[name]['Seminar']['cnt'])
-        avg_tests = (cnt_grades[name]['Test']['sum'] /
-                     cnt_grades[name]['Test']['cnt'])
-        result[name] = round(0.7*avg_seminars + 0.3*avg_tests)
-    return pd.Series(result)
-
+    return cnt_grades
 
 def is_valid_excuse(excuses, date, name):
     date = datetime.strptime(date, "%Y-%m-%d")
@@ -53,4 +56,24 @@ def is_valid_excuse(excuses, date, name):
             return True
         return False
 
-# result = main(grades, excuses, plan)
+
+def get_result(cnt_grades):
+    result = {}
+    for name in cnt_grades:
+        if cnt_grades[name]['Seminar']['cnt'] != 0:
+            avg_seminars = (cnt_grades[name]['Seminar']['sum'] /
+                            cnt_grades[name]['Seminar']['cnt'])
+        else:
+            avg_seminars = 0
+
+        if cnt_grades[name]['Test']['cnt'] != 0 :
+            avg_tests = (cnt_grades[name]['Test']['sum'] /
+                         cnt_grades[name]['Test']['cnt'])
+        else:
+            avg_tests = 0
+        result[name] = round(0.7*avg_seminars + 0.3*avg_tests)
+    return pd.Series(result)
+
+
+
+#result = main(grades, excuses, plan)
