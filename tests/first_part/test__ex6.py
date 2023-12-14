@@ -18,7 +18,6 @@ class TestMain(TestCase):
                                 'date': {0: '2017-02-10 2017-02-11', 1: '2017-02-12 2017-02-12', 2: '2017-02-19 2017-02-19', 3: '2017-02-19 2017-02-19'},
                                 'reason': {0: 'valid', 1: 'valid', 2: 'invalid', 3: 'invalid'}})
 
-        # the sample structure of the result variable
         expected_result = pd.Series({'Hermione': 4, 'Ron': 2})
         actual_result = ex6.main(grades, excuses, plan)
         for index in expected_result.index:
