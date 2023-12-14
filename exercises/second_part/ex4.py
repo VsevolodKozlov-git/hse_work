@@ -1,5 +1,5 @@
 import re
-from collections import defaultdict
+
 
 
 
@@ -8,10 +8,14 @@ def str_to_wordlist(string):
 
 
 def main(string):
-    elements = defaultdict(list)
+    elements = {}
     wordlist = str_to_wordlist(string)
     for word in wordlist:
         l = len(word)
         key = f'{l} letter words'
+        if key not in elements:
+            elements[key] = []
         elements[key].append(word)
-    return elementse
+    return elements
+
+#elements = main(string)
