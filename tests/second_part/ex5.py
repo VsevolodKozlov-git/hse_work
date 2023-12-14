@@ -173,6 +173,34 @@ class MainTestCase(unittest.TestCase):
 
         self.assertEqual(expected, actual)
 
+    def test_example2(self):
+        ex5.russian_recipes = {"name": ["Kharcho soup", "Beef Shurpa", "Homemade cheese sticks", "Potato pancakes"],
+                               "url": ["https://www.russianfood.com/recipes/recipe.php?rid=102711",
+                                       "https://www.russianfood.com/recipes/recipe.php?rid=138622",
+                                       "https://www.russianfood.com/recipes/recipe.php?rid=145215",
+                                       "https://www.russianfood.com/recipes/recipe.php?rid=138784"],
+                               "ingredients": [
+                                   ["chicken", "rice", "garlic", "butter", "onion", "carrot", "tomato paste", "greens",
+                                    "salt"],
+                                   ["beef", "potato", "carrot", "onion", "sweet pepper", "bay leaf", "salt", "turmeric",
+                                    "pepper", "curry", "parsley"],
+                                   ["hard cheese", "eggs", "flour", "vegetable oil"],
+                                   ["potato", "eggs", "salt", "pepper", "vegetable oil"]],
+                               "amount": [
+                                   ["1 piece", "0.5 cups", "1 piece", "50 g", "1 piece", "1 piece", "2 spoons", "50 g",
+                                    "1 spoon"],
+                                   ["800 g", "8 pieces", "200 g", "150 g", "100 g", "3 pieces", "1 spoon", "0.5 spoons",
+                                    "0.5 spoons", "1 spoon", "1 bunch"],
+                                   ["300 g", "1 piece", "30 g", "70 ml"],
+                                   ["11 pieces", "2 pieces", "0.5 spoons", "1 pinch", "1 spoon"]],
+                               "time_variative": [30, 25, 15, 35],
+                               "time_strict": [55, 100, 15, 30]}
+        ex5.restrictions = {"allergy sufferers": "5", "vegans": "135", "non-onion lovers": "2"}
+        ex5.preferences = {1: "not chicken", 2: "not onion", 3: "not beef", 4: "not pepper", 5: "not butter"}
+        expected = (['Papa - onion, butter'], "Go buy ready-made food and don't suffer.")
+        actual = ex5.ideal_dinner(48, 2, "eggs", "vegetable oil", Papa=["non-onion lovers", "allergy sufferers"])
+
+        self.assertEqual(expected, actual)
 
     def test_empty(self):
         ex5.russian_recipes = {"name": ["Kharcho soup", "Beef Shurpa", "Homemade cheese sticks", "Potato pancakes"],
@@ -203,7 +231,7 @@ class MainTestCase(unittest.TestCase):
 
 
         expected = (['Papa - onion', 'Mama - no restrictions'],
-                    "Go buy ready-made food and don't suffer")
+                    "Go buy ready-made food and don't suffer.")
         actual = ex5.ideal_dinner(100, 5,  Papa=["non-onion lovers"], Mama=[])
 
         self.assertEqual(expected, actual)

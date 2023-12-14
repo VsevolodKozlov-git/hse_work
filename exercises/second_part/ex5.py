@@ -37,7 +37,7 @@ def ideal_dinner(max_time, n_members, *available_ingredients, **family_kwargs):
                                               available_ingredients)
     output_recipes = recipes_to_list(russian_recipes, recipe_ind)
     if not output_recipes:
-        output_recipes = "Go buy ready-made food and don't suffer"
+        output_recipes = "Go buy ready-made food and don't suffer."
 
     return output_family, output_recipes
 
