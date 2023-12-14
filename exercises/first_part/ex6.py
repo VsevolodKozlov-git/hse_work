@@ -45,6 +45,7 @@ def count_grades(grades, excuses, plan):
     return cnt_grades
 
 def is_valid_excuse(excuses, date, name):
+    # todo test no excuse 
     date = datetime.strptime(date, "%Y-%m-%d")
     filtered_df = excuses[(excuses['start_date'] <= date) & (excuses['end_date'] >= date)]
     filtered_df = filtered_df[filtered_df['name'] == name]
