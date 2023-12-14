@@ -177,8 +177,8 @@ def refine_market(report, *arg_filters):
 
     company_pattern = r'(?:[A-Z]\w+\s+){1,}(?:Inc\.|LLC|Ltd\.|Corp\.)'
     url_pattern = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\((?:[^\s()<>]+|(?:\([^\s()<>]+\)))*\))+(?:\((?:[^\s()<>]+|(?:\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’])\.?)"
-    income_pattern = r'income of \$(\d{1,3}(?:,\d{3})*)'
-    profit_pattern = r'profit of \$(\d{1,3}(?:,\d{3})*)'
+    income_pattern = r'income.+?\$(\d{1,3}(?:,\d{3})*)'
+    profit_pattern = r'profit.+?\$(\d{1,3}(?:,\d{3})*)'
     tin_pattern = r'TIN number.+?(\d+)'
 
     # Find all matches in the report
