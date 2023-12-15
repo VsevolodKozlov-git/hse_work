@@ -1,6 +1,7 @@
 import pandas as pd
 from datetime import datetime
 
+
 def main(grades, excuses, plan):
     grades = grades.copy()
     excuses = excuses.copy()
@@ -75,6 +76,8 @@ def get_result(cnt_grades):
         else:
             avg_tests = 0
         result[name] = round(0.7*avg_seminars + 0.3*avg_tests)
+    result = pd.Series(result, dtype="int")
+    result.sort_index(inplace=True)
     return pd.Series(result)
 
 
